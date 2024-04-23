@@ -3,6 +3,8 @@ import LogoTitle from '../../assets/images/logo-s.png'
 import './index.scss'
 import AnimatedLetters from '../AnimatedLetters'
 import React, { useEffect, useState } from 'react'; // Import useState from React
+import Logo from './Logo'
+
 
 const Home = () => {
 
@@ -10,15 +12,15 @@ const Home = () => {
     const newArray = Array.from(['i', 'd', 'd', 'h', 'a', 'n', 't']);
     const jobArray = Array.from(['w', 'e', 'b', ' ', 'd', 'e', 'v', 'e', 'l', 'o', 'p', 'e', 'r', '.']);
 
-    useEffect(() => {
+useEffect(() => {
+    // Set a timeout to change the letterClass state after 4 seconds
+    const timer = setTimeout(() => {
+        setLetterClass('text-animate-hover');
+    }, 4000);
 
-        return setTimeout(() => {
-
-            setLetterClass('text-animate-hover')
-        }, 4000)
-
-    }, [])
-
+    // Return a cleanup function that clears the timeout
+    return () => clearTimeout(timer);
+}, []); // Empty dependency array means this effect runs once on mount
 
     return (
         <>
@@ -26,23 +28,25 @@ const Home = () => {
                 <div className="text-zone">
                     <h1>
                         <span className={letterClass}>H</span>
-                        <span className={'${letterClass} _12'}>i,</span>
+                        <span className={`${letterClass} _12`}>i,</span>
                         <br />
-                        <span className={'${letterClass} _13'}>I,</span>
-                        <span className={'${letterClass} _14'}>'m',</span>
+                        <span className={`${letterClass} _13`}>I,</span>
+                        <span className={`${letterClass} _14`}>'m',</span>
 
                         <img src={LogoTitle} alt="JavaScript Developer Name, Web Developer Name" />
                         <AnimatedLetters letterClass={letterClass} strArray={newArray} idx={15} />
                         <br />
                         <AnimatedLetters letterClass={letterClass} strArray={jobArray} idx={22} />
                     </h1>
-                    <h2>Frontend Developer / Wordpreess Developer</h2>
+                    <h2>Frontend Developer / Wordpress Developer</h2>
                     <Link to="/contact" className='flat-button'>CONTACT ME</Link>
                 </div>
+
+                <Logo />
             </div>
         </>
-
     );
+
 }
 
 export default Home
