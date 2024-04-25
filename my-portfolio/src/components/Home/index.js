@@ -4,6 +4,7 @@ import './index.scss'
 import AnimatedLetters from '../AnimatedLetters'
 import React, { useEffect, useState } from 'react'; // Import useState from React
 import Logo from './Logo'
+import Loader from 'react-loaders'
 
 
 const Home = () => {
@@ -12,15 +13,15 @@ const Home = () => {
     const newArray = Array.from(['i', 'd', 'd', 'h', 'a', 'n', 't']);
     const jobArray = Array.from(['w', 'e', 'b', ' ', 'd', 'e', 'v', 'e', 'l', 'o', 'p', 'e', 'r', '.']);
 
-useEffect(() => {
-    // Set a timeout to change the letterClass state after 4 seconds
-    const timer = setTimeout(() => {
-        setLetterClass('text-animate-hover');
-    }, 4000);
+    useEffect(() => {
+        // Set a timeout to change the letterClass state after 4 seconds
+        const timer = setTimeout(() => {
+            setLetterClass('text-animate-hover');
+        }, 4000);
 
-    // Return a cleanup function that clears the timeout
-    return () => clearTimeout(timer);
-}, []); // Empty dependency array means this effect runs once on mount
+        // Return a cleanup function that clears the timeout
+        return () => clearTimeout(timer);
+    }, []); // Empty dependency array means this effect runs once on mount
 
     return (
         <>
@@ -44,6 +45,9 @@ useEffect(() => {
 
                 <Logo />
             </div>
+
+            <Loader type="pacman" />
+
         </>
     );
 
